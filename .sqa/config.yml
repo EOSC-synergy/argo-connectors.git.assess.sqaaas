@@ -1,0 +1,72 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/ARGOeu/argo-connectors:
+      branch: master
+      repo: https://github.com/ARGOeu/argo-connectors.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/ARGOeu/argo-connectors git:
+        commands:
+        - /usr/bin/env sh .sqa/script.gloppy-bronze-discus.sh
+        container: qc.acc_crappy-lime-setter
+  QC.Doc:
+    repos:
+      github.com/ARGOeu/argo-connectors find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.randy-carmine-chicken.sh
+        container: qc.doc_blurry-yellow-starfish
+      github.com/ARGOeu/argo-connectors git:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-goldenrod-koala.sh
+        container: qc.doc_sloppy-russet-discus
+      github.com/ARGOeu/argo-connectors markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-periwinkle-warthog.sh
+        container: qc.doc_wheezy-heliotrope-shrew
+  QC.Lic:
+    repos:
+      github.com/ARGOeu/argo-connectors licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.fuzzy-sapphire-russel.sh
+        container: qc.lic_blurry-puce-cuscus
+  QC.Sec:
+    repos:
+      github.com/ARGOeu/argo-connectors bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-brass-wolfhound.sh
+        container: qc.sec_crappy-cerise-woodpecker
+  QC.Sty:
+    repos:
+      github.com/ARGOeu/argo-connectors flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.skinny-cyan-termite.sh
+        container: qc.sty_skanky-razzmatazz-cockroach
+      github.com/ARGOeu/argo-connectors hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-teal-balinese.sh
+        container: qc.sty_shaggy-orchid-barnacle
+      github.com/ARGOeu/argo-connectors jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.lovely-magnolia-barb.sh
+        container: qc.sty_nerdy-ruby-iguana
+  QC.Uni:
+    repos:
+      github.com/ARGOeu/argo-connectors pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.crappy-pink-sponge.sh
+        container: qc.uni_flabby-turquoise-zebu
+  QC.Ver:
+    repos:
+      github.com/ARGOeu/argo-connectors get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.sunny-thistle-devil.sh
+        container: qc.ver_sickly-smalt-spaniel
+timeout: 5400
